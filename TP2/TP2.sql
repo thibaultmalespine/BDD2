@@ -50,3 +50,19 @@ BEGIN
     RETURN;
 END;
 $$ LANGUAGE 'plpgsql';
+
+
+-- Faites une fonction ressortant la liste des équipes (avec leur site) participant à un défi donné
+CREATE OR REPLACE FUNCTION getEquipes(Defi Varchar(30))
+RETURNS SETOF VARCHAR(30) AS $$
+DECLARE 
+    uneEquipe VARCHAR(30);
+BEGIN   
+    FOR uneEquipe IN SELECT nomEquipe FROM Equipe, Defi 
+    WHERE nomDefi=leDefi AND $1=nomDefi
+    LOOP
+        RETURN NEXT uneEquipe;
+    END LOOP;
+    RETURN;
+END;
+$$ LANGUAGE 'plpgsql'; 
