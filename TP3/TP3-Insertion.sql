@@ -14,7 +14,9 @@ INSERT INTO Proprietaire VALUES
 
 INSERT INTO Bateau VALUES
 ('z7k6cfr', 'TITANIC', 20, 6, 1),
-('r8e6pio', 'TEMPETE', 10, 3, 2);
+('c5g8fat', 'COCINELLE', 6, 2, 1),
+('r8e6pio', 'TEMPETE', 10, 3, 2),
+('rasb5io', 'Dupond', 10, 3, 2);
 
 INSERT INTO Emplacement VALUES
 (NEXTVAL('pkE'), 20, 'z7k6cfr', '2023-07-20', '2023-08-20'),

@@ -3,6 +3,9 @@
 DROP VIEW q3;
 
 CREATE OR REPLACE VIEW q3 AS 
-SELECT nomP, prenomP, count(*) as nb_Bateau FROM Proprietaire, Bateau 
-WHERE leProprio=idProprio GROUP BY nomP, prenomP;
+SELECT nomP, prenomP 
+FROM Proprietaire 
+WHERE nomP NOT IN ( 
+    SELECT nomP FROM Proprietaire, Bateau 
+    WHERE leProprio=idProprio );
 

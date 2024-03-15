@@ -18,7 +18,7 @@ CREATE TABLE Proprietaire
     idProprio INT  PRIMARY KEY,
     nomP VARCHAR(40) NOT NULL ,
     prenomP VARCHAR(40) NOT NULL,
-	emailP VARCHAR(40) UNIQUE
+	 emailP VARCHAR(40) UNIQUE
    );
 ALTER TABLE Proprietaire ADD CONSTRAINT uqNomPrenomP UNIQUE (nomP,prenomP);
    
