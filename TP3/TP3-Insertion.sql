@@ -19,12 +19,13 @@ INSERT INTO Bateau VALUES
 ('rasb5io', 'Dupond', 10, 3, 2);
 
 INSERT INTO Emplacement VALUES
-(NEXTVAL('pkE'), 20, 'z7k6cfr', '2023-07-20', '2023-08-20'),
-(NEXTVAL('pkE'), 15, 'r8e6pio', '2024-01-13', '2024-03-13'),
-(NEXTVAL('pkE'), 13,NULL,NULL,NULL),
-(NEXTVAL('pkE'), 18,NULL,NULL,NULL),
-(NEXTVAL('pkE'), 7,NULL,NULL,NULL);
+(NEXTVAL('pkE'), 20),
+(NEXTVAL('pkE'), 15),
+(NEXTVAL('pkE'), 13),
+(NEXTVAL('pkE'), 18),
+(NEXTVAL('pkE'), 7);
 
 INSERT INTO Reservation VALUES
 (NEXTVAL('pkR'), '2023-06-20', '2023-09-20', 1, 'z7k6cfr'),
-(NEXTVAL('pkR'), '2023-12-31', '2024-03-31', 2, 'r8e6pio');
+(NEXTVAL('pkR'), '2023-12-31', '2024-03-31', 2, 'c5g8fat'),
+(NEXTVAL('pkR'), '2023-01-31', '2024-06-29', 5, 'r8e6pio');
