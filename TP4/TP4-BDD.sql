@@ -4,23 +4,21 @@
 \echo [INFO] Creation de la base de donnees resavol
 DROP DATABASE IF EXISTS resavol;
 CREATE DATABASE resavol ENCODING 'UTF8';
-
 \echo [INFO] Connexion a la nouvelle base de donnees resavol
 
 \c resavol
 
 SET DATESTYLE='DMY';
 
-DROP TABLE IF EXISTS Reserve;
+DROP VIEW IF EXISTS checkCardAgenceVol;
+DROP VIEW IF EXISTS checkCardClientVol;
 
+DROP TABLE IF EXISTS estClientDe;
+DROP TABLE IF EXISTS Reservation;
 DROP TABLE IF EXISTS Vol;
-
 DROP TABLE IF EXISTS Agence;
-
 DROP TABLE IF EXISTS Ville;
-
 DROP TABLE IF EXISTS Client;
-
 
 CREATE TABLE Client
    (
@@ -61,26 +59,32 @@ CREATE TABLE Vol
 	lAgence INT 
     CONSTRAINT fkVolAgence REFERENCES Agence(noAgence)
     CONSTRAINT nnVolAgence NOT NULL,
-    dateVol DATE
+    dateVol DATE DEFAULT CURRENT_DATE,
+    CONSTRAINT ckVilleDepartVilleArrivee CHECK (Vol.villeDepart != Vol.villeArrivee)
    ) ;
 
    
 CREATE TABLE Reservation
-   (unVol INT
-    CONSTRAINT fkReserveVol REFERENCES Vol(noVol),
+   (
     unClient INT 
 	CONSTRAINT fkReserveClient REFERENCES Client(noClient),
+    unVol INT
+    CONSTRAINT fkReserveVol REFERENCES Vol(noVol),
 	dateResa DATE DEFAULT CURRENT_DATE,
-	nbBillets INT
-    -- ajouter la clé primaire double
+	nbBillets INT 
+    CONSTRAINT ckNbBillets CHECK (nbBillets >= 1),
+    CONSTRAINT pkReservation PRIMARY KEY (unVol, unClient)
    ) ;
-   
-   
-DROP SEQUENCE IF EXISTS cleClient;
-CREATE SEQUENCE cleClient MINVALUE 1;
 
-DROP SEQUENCE IF EXISTS cleVol;
-CREATE SEQUENCE cleVol MINVALUE 1;
+CREATE TABLE estClientDe
+    (
+        unClient INT 
+        CONSTRAINT fkEstClientDeClient REFERENCES Client(noClient),
+        uneAgence INT
+        CONSTRAINT fkEstClientDeAgence REFERENCES Agence(noAgence),
+        CONSTRAINT pkEstClientDe PRIMARY KEY (unClient, uneAgence)
+    );
+   
 
-DROP SEQUENCE IF EXISTS cleAgence;
-CREATE SEQUENCE cleAgence MINVALUE 1;
+
+-- contraintes d, e et f nécessitent un trigger
