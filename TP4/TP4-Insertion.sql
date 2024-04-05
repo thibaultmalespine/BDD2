@@ -21,7 +21,8 @@ INSERT INTO Client VALUES
     (NEXTVAL('cleClient'),'nom2','prenom2'),
     (NEXTVAL('cleClient'),'nom3','prenom3'),
     (NEXTVAL('cleClient'),'nom4','prenom4'),
-    (NEXTVAL('cleClient'),'nom5','prenom5');
+    (NEXTVAL('cleClient'),'nom5','prenom5'),
+    (NEXTVAL('cleClient'),'prenom','prenom6');
 
 INSERT INTO Ville VALUES
     ('nomVille', 'France'),
